@@ -6,7 +6,13 @@
         <button type="button" class="btn-close" @click="close">X</button>
       </header>
 
-      <div class="cart-body" v-for="item in items" :key="item.id">{{item.name}}</div>Items
+      <div class="cart-body" v-for="item in items" :key="item.id">
+        {{item.name}}
+        {{ item.name }}
+        <span class="text-center">{{ item.price.formatted_with_symbol }}</span>
+        <!-- <button @click="$emit('remove-from-cart', item.id)"
+        class="bg-transparent py-2 px-4 border hover:border-transparent rounded float-right">Remove</button>-->
+      </div>
       <div class="cart-footer">
         <slot name="footer">
           Total:
@@ -61,7 +67,7 @@ export default {
 
 .cart-header {
   border-bottom: 1px solid #eeeeee;
-  color: #4AAE9B;
+  color: black;
   justify-content: space-between;
 }
 
@@ -81,14 +87,14 @@ export default {
   padding: 20px;
   cursor: pointer;
   font-weight: bold;
-  color: #4AAE9B;
+  color: black;
   background: transparent;
 }
 
 .btn-green {
   color: white;
-  background: #4AAE9B;
-  border: 1px solid #4AAE9B;
+  background: black;
+  border: 1px solid black;
   border-radius: 2px;
 }
 </style>

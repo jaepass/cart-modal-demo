@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    {{cart}}
-    <button @click="toggleCart">View Cart</button>
+    <div class="header">
+      <button @click="toggleCart">View Cart</button>
+      <p v-if="cartItems">{{cart.total_items}}</p>
+    </div>
+
     <Cart :items="cartItems" v-if="displayCart"/>
-    <div class="flex mb-4">
-      <div class="row">
-        <div v-for="product in products" :key="product.id" class="col-sm-4">
-          <Product :product="product" @add-to-cart="addToCart(product)"/>
+    <div class="container mx-auto px-4">
+      <div class="flex mb-4">
+        <div class="row">
+          <div v-for="product in products" :key="product.id" class="col-sm-4">
+            <Product :product="product" @add-to-cart="addToCart(product)"/>
+          </div>
         </div>
       </div>
     </div>
@@ -67,8 +72,9 @@ export default {
   },
 
   methods: {
+    //Add products to cart
     addToCart(product) {
-      this.commerce.cart
+      commerce.cart
         .add({
           id: product.id,
           quantity: 1
@@ -92,4 +98,31 @@ export default {
 </script>
 
 <style>
+.header {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.header button {
+  text-decoration: none;
+  background-color: black;
+  color: #fff;
+  padding: 10px 6px;
+  cursor: pointer;
+  border: 1px solid black;
+  transition: 0.3s all ease-in-out;
+
+}
+
+.header button:hover {
+  background-color: white;
+  color: black;
+}
+
+.header p {
+  padding: 10px 10px;
+}
 </style>

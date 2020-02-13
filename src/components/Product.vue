@@ -7,7 +7,7 @@
       <p
         class="text-center text-muted card-subtitle display-5 price"
       >{{product.price.formatted_with_symbol}}</p>
-      <button @click="$emit('add-to-cart', product)">Quick Add</button>
+      <button name="text-center" @click="$emit('add-to-cart', product)">Quick Add</button>
     </div>
   </div>
 </template>
@@ -33,20 +33,19 @@ export default {
 }
 
 button {
-  background-color: transparent;
-  text-decoration: underline;
-  border: none;
-  color: rgb(60, 60, 60);
+  background-color: white;
+  color: black;
+  padding: 10px 6px;
+  cursor: pointer;
+  border: 1px solid black;
   transition: all 0.3s ease-in-out;
+  justify-content: flex-end;
+  position: relative;
 }
 button:hover {
-  text-decoration: none;
-  background-color: transparent;
-  color: #DBA28B;
-}
-
-button img {
-  padding-right: 7px;
+  background-color: black;
+  color: #fff;
+  border: 1px solid black;
 }
 
 @media only screen and (max-width: 400px) {
