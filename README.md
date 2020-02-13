@@ -1,9 +1,8 @@
-# Demo Store built in Vuejs with Commerce.js API
+# Cart Modal Demo with Commerce.js
 
 ![Demo Image]()
 
-### Visit Live Site
-https://jaepass.github.io/demostore-cjs/
+### Visit Live Site()
 
 ## Project setup
 ```
