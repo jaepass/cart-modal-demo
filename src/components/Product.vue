@@ -1,3 +1,4 @@
+
 <template>
   <div class="card my-5" style="height:41rem;">
     <div class="card-body">
@@ -7,7 +8,7 @@
       <p
         class="text-center text-muted card-subtitle display-5 price"
       >{{product.price.formatted_with_symbol}}</p>
-      <button name="text-center" @click="$emit('add-to-cart', product)">Quick Add</button>
+      <button class="btn-add mt-3" @click="$emit('add-to-cart', product)">Quick Add</button>
     </div>
   </div>
 </template>
@@ -19,30 +20,34 @@ export default {
 </script>
 
 <style>
+body {
+  letter-spacing: 2px;
+}
 .card h4 {
   padding-top: 20px;
   font-size: 20px;
   font-weight: 700;
-  letter-spacing: 3.85px;
   line-height: 32px;
 }
 
 .card p {
-  letter-spacing: 2.4px;
   padding-top: 5px;
 }
 
-button {
+.card button {
   background-color: white;
   color: black;
-  padding: 10px 6px;
   cursor: pointer;
   border: 1px solid black;
   transition: all 0.3s ease-in-out;
   justify-content: flex-end;
   position: relative;
+  display: flex;
+  margin: 0 auto;
+  line-height: 32px;
 }
-button:hover {
+
+.card button:hover {
   background-color: black;
   color: #fff;
   border: 1px solid black;

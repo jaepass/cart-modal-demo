@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="header">
-      <button @click="toggleCart">View Cart</button>
+      <button class="btn-cart" @click="toggleCart">View Cart</button>
       <p v-if="cartItems">{{cart.total_items}}</p>
     </div>
 
-    <Cart :items="cartItems" v-if="displayCart"/>
+    <Cart :items="cartItems" v-if="displayCart" @remove-from-cart="removeFromCart"/>
     <div class="container mx-auto px-4">
       <div class="flex mb-4">
         <div class="row">
@@ -54,7 +54,6 @@ export default {
       })
       // Error
       .catch(error => {
-        // eslint-disable-next-line
         console.log(error);
       });
 
@@ -87,6 +86,22 @@ export default {
 
     toggleCart() {
       this.displayCart = !this.displayCart;
+    },
+
+    close(close) {
+      this.$emit(close);
+    },
+
+    removeFromCart(lineItemId) {
+      commerce.cart
+        .remove(lineItemId)
+        .then(response => {
+          this.cart = response.cart;
+        })
+        .catch(error => {
+          //eslint-disable-next-line
+          console.log(error);
+        });
     }
   },
 
@@ -103,7 +118,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   position: relative;
-  padding-top: 10px;
+  padding-top: 30px;
   padding-right: 20px;
 }
 
@@ -111,16 +126,17 @@ export default {
   text-decoration: none;
   background-color: black;
   color: #fff;
-  padding: 10px 6px;
+  padding: 0 15px;
   cursor: pointer;
   border: 1px solid black;
   transition: 0.3s all ease-in-out;
-
+  height: 40px;
 }
 
 .header button:hover {
   background-color: white;
   color: black;
+  line-height: 30px;
 }
 
 .header p {
